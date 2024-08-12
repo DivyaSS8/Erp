@@ -96,7 +96,7 @@ const AddClient = () => {
   return (
     <div className="p-4 bg-blue-50 min-h-screen">
       <div className="bg-green-500 text-white p-4 rounded-t-lg">
-        <h2 className="text-xl font-semibold">Create new Client</h2>
+        <h2 className="text-xl font-semibold">Create new Product</h2>
       </div>
       <div className="bg-white p-4 rounded-b-lg shadow-lg">
         <form onSubmit={handleSubmit} className="grid grid-cols-2 gap-4">
@@ -343,7 +343,7 @@ const AddClient = () => {
             />
           </div>
 
-          <div>
+          {/* <div>
             <label className="block text-gray-700">Birthday</label>
             <input
               type="date"
@@ -352,9 +352,9 @@ const AddClient = () => {
               value={formData.birthday}
               onChange={handleChange}
             />
-          </div>
+          </div> */}
 
-          <div>
+          {/* <div>
             <label className="block text-gray-700">Anniversary</label>
             <input
               type="date"
@@ -363,7 +363,7 @@ const AddClient = () => {
               value={formData.anniversary}
               onChange={handleChange}
             />
-          </div>
+          </div> */}
 
           <div>
             <label className="block text-gray-700">Profession</label>
@@ -387,7 +387,7 @@ const AddClient = () => {
             />
           </div>
 
-          <div>
+          {/* <div>
             <label className="block text-gray-700">Workout Start</label>
             <input
               type="time"
@@ -396,9 +396,9 @@ const AddClient = () => {
               value={formData.workout_start}
               onChange={handleChange}
             />
-          </div>
+          </div> */}
 
-          <div>
+          {/* <div>
             <label className="block text-gray-700">Workout End</label>
             <input
               type="time"
@@ -407,7 +407,7 @@ const AddClient = () => {
               value={formData.workout_end}
               onChange={handleChange}
             />
-          </div>
+          </div> */}
 
           <div>
             <label className="block text-gray-700">Address</label>
