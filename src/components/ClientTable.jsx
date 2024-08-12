@@ -43,10 +43,40 @@ const ClientTable = () => {
     setOpenDropdown(null);
   };
 
+  const [dropDown, setDropDown]  = useState(false);
+
   return (
     <div className="p-4 bg-blue-50 min-h-screen">
+       <div className='w-12/12 m-auto flex justify-between'>
+        <div>
+        <input className="w-80 p-2 my-5 mr-2 border-2 rounded-md focus:border-green-500 outline-none border-gray-300" type='text' placeholder='search the product..'/>
+        <button className='text-white font-bold p-2 my-2 text-lg bg-pink-500 rounded-xl'>search</button>
+        </div>
+
+        <div className='cursor-pointer w-36 text-center mt-5' onClick={()=> (dropDown === false) ? setDropDown(true) : setDropDown(false)}>
+          <h1 className='bg-pink-500 rounded-xl text-center font-bold flex items-center justify-between mx-1 p-1 px-2 text-lg text-white'>Options
+         <img className="w-10 h-10 text-center " src='https://cdn2.iconfinder.com/data/icons/font-awesome/1792/angle-down-512.png' alt='down arror'/>
+
+          </h1>
+        
+
+        </div>
+      </div>
+      {(dropDown == true) ?
+      (<div className='bg-gray-200 rounded p-3 mr-10 absolute right-10 top-[14rem] '>
+          <p className='p-1 border-b-2 border-gray-400'>All Products</p>
+          <p className='p-1 border-b-2 border-gray-400'>Expired Product</p>
+          <p className='p-1 border-b-2 border-gray-400'>Expiring soon</p>
+      </div>):
+      (<div className='bg-gray-200 rounded p-3 mr-10 absolute right-10 top-[14rem] hidden'>
+      <p className='p-1 border-b-2 border-gray-400'>All Products</p>
+      <p className='p-1 border-b-2 border-gray-400'>Expired Product</p>
+      <p className='p-1 border-b-2 border-gray-400'>Expiring soon</p>
+  </div>)
+      } 
+
       <div className="bg-green-500 text-white p-4 rounded-t-lg">
-        <h2 className="text-xl font-semibold">Client List</h2>
+        <h2 className="text-xl font-semibold">Product List</h2>
       </div>
       <div className="bg-white p-4 rounded-b-lg shadow-lg">
         <div className="flex justify-between items-center mb-4">
@@ -160,11 +190,11 @@ const ClientTable = () => {
             </tbody>
           </table>
         </div>
-        <div className="mt-4 flex justify-between items-center">
+        {/* <div className="mt-4 flex justify-between items-center">
           <button className="bg-black text-white py-2 px-4 rounded-full">BULK SMS</button>
           <div className="text-green-500">
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );
