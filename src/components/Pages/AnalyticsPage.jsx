@@ -67,9 +67,7 @@ const AnalyticsPage = () => {
   };
 
   return (
-    <div className="p-6 bg-gray-50 min-h-screen">
-      {/* Header */}
-      <header className="text-3xl font-bold mb-6 text-center">INVENTORY Dashboard</header>
+    <div className="p-6 bg-blue-50 min-h-screen">
 
       {/* Summary Section */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
