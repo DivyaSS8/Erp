@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import { FaEllipsisV } from 'react-icons/fa';
 import { createPortal } from 'react-dom';
 
+
 const ClientTable = () => {
   const [clients, setClients] = useState([]);
   const [openDropdown, setOpenDropdown] = useState(null);

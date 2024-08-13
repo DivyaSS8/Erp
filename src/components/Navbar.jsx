@@ -11,7 +11,7 @@ const Navbar = () => {
     { name: "Categories", path: "/categories" },
     { name: "Warehouse Locations", path: "/warehouse-locations" },
     { name: "Shipping", path: "/shipping" },
-    { name: "Reports", path: "/reports" },
+    { name: "Reports", path: "/analytics" },
     { name: "Feedbacks", path: "/feedbacks" },
   ];
 
