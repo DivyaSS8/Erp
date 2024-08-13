@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { FaEllipsisV } from 'react-icons/fa';
 import { createPortal } from 'react-dom';
-
+import { useNavigate } from 'react-router-dom';
 
 const ClientTable = () => {
   const [clients, setClients] = useState([]);
@@ -46,6 +46,10 @@ const ClientTable = () => {
 
   const [dropDown, setDropDown]  = useState(false);
 
+  const navigate = useNavigate();
+  const navigateToAddProd = ()=>{
+      navigate('/add-product');
+  }
   return (
     <div className="p-4 bg-blue-50 min-h-screen">
        <div className='w-12/12 m-auto flex justify-between'>
@@ -54,9 +58,18 @@ const ClientTable = () => {
         <button className='text-white font-bold p-2 my-2 text-lg bg-pink-500 rounded-xl'>search</button>
         </div>
 
-        <div className='cursor-pointer w-36 text-center mt-5' onClick={()=> (dropDown === false) ? setDropDown(true) : setDropDown(false)}>
-          <h1 className='bg-pink-500 rounded-xl text-center font-bold flex items-center justify-between mx-1 p-1 px-2 text-lg text-white'>Options
-         <img className="w-10 h-10 text-center " src='https://cdn2.iconfinder.com/data/icons/font-awesome/1792/angle-down-512.png' alt='down arror'/>
+
+        <div className='cursor-pointer text-center mt-5 flex' >
+        <button 
+        onClick={()=>navigateToAddProd()}
+        className='text-white font-bold p-2 my-2 text-lg bg-pink-500 rounded-xl'>
+          Add Product
+        </button>
+
+          <h1 onClick={()=> (dropDown === false) ? setDropDown(true) : setDropDown(false)} 
+          className='bg-pink-500 rounded-xl text-center h-12 font-bold flex items-center justify-between m-2 p-2 text-lg text-white'>
+            Options
+         <img className="w-10 text-center " src='https://cdn2.iconfinder.com/data/icons/font-awesome/1792/angle-down-512.png' alt='down arror'/>
 
           </h1>
         
@@ -64,7 +77,7 @@ const ClientTable = () => {
         </div>
       </div>
       {(dropDown == true) ?
-      (<div className='bg-gray-200 rounded p-3 mr-10 absolute right-10 top-[14rem] '>
+      (<div className='cursor-pointer bg-gray-200 rounded p-3 mr-10 absolute right-10 top-[14rem] '>
           <p className='p-1 border-b-2 border-gray-400'>All Products</p>
           <p className='p-1 border-b-2 border-gray-400'>Expired Product</p>
           <p className='p-1 border-b-2 border-gray-400'>Expiring soon</p>

@@ -120,7 +120,7 @@ const AddClient = () => {
               value="Product Name"
               onChange={handleChange}
             />
-          </div> 
+          </div>
 
           <div>
             <label className="block text-gray-700">Product ID</label>
