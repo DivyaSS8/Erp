@@ -7,6 +7,8 @@ import MainContent from './components/Pages/MainContent';
 import FollowUpPage from './components/Pages/FollowUpPage';
 import AnalyticsPage from './components/Pages/AnalyticsPage';
 import Orders from './components/Pages/OrdersPage';
+import PurchaseOrders from './components/Pages/PurchaseOrders';
+import SuppliersPage from './components/Pages/SuppliersTable';
 import InventoryTrackingPage from './components/Pages/InventoryTrackingPage';
 
 // Components
@@ -25,6 +27,8 @@ const App = () => {
           <Route path="/add-product" element={<AddClient />} />
           <Route path="/analytics" element={<AnalyticsPage />} />
           <Route path="/orders" element={<Orders />} />
+          <Route path="/purchase-orders" element={<PurchaseOrders />} />
+          <Route path="/suppliers" element={<SuppliersPage />} />
           <Route path="/inventory-tracking" element={<InventoryTrackingPage />} />
         </Routes>
       </Layout>
