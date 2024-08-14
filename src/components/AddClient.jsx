@@ -96,78 +96,163 @@ const AddClient = () => {
   return (
     <div className="p-4 bg-blue-50 min-h-screen">
       <div className="bg-green-500 text-white p-4 rounded-t-lg">
-        <h2 className="text-xl font-semibold">Create new Client</h2>
+        <h2 className="text-xl font-semibold">Create new Product</h2>
       </div>
       <div className="bg-white p-4 rounded-b-lg shadow-lg">
         <form onSubmit={handleSubmit} className="grid grid-cols-2 gap-4">
           {/* Existing Fields */}
           <div>
-            <label className="block text-gray-700">Invoice ID</label>
-            <input
-              type="text"
-              name="invoice_id"
-              className="border rounded w-full py-2 px-3"
-              value={formData.invoice_id}
-              disabled
-            />
+            <label className="block text-gray-700">Product Type</label>
+            
+               <select id="preselectedDropdown" name="options" className="border rounded w-full py-2 px-3">
+                  <option value="option1" selected>Standard</option>
+                  <option value="option2" >Configurable</option>
+                  <option value="option3">Serialized</option>
+                </select>
           </div>
 
           <div>
-            <label className="block text-gray-700">Invoice date</label>
+            <label className="block text-gray-700">Product Name</label>
             <input
-              type="date"
-              name="invoice_date"
+              type="text"
+              name="Product Name"
               className="border rounded w-full py-2 px-3"
-              value={formData.invoice_date}
+              value="Product Name"
               onChange={handleChange}
             />
           </div>
 
           <div>
-            <label className="block text-gray-700">Member ID</label>
+            <label className="block text-gray-700">Product ID</label>
             <input
               type="text"
               name="member_id"
               className="border rounded w-full py-2 px-3"
-              value={formData.member_id}
+              value="Product ID"
               onChange={handleChange}
             />
           </div>
 
           <div>
-            <label className="block text-gray-700">Client Name</label>
+            <label className="block text-gray-700">Barcode Symbology</label>
+            
+               <select id="preselectedDropdown" name="options" className="border rounded w-full py-2 px-3">
+                  <option value="option1" selected>code39</option>
+                  <option value="option2" >Code 128</option>
+                  <option value="option3">QR Code</option>
+                  <option value="option3">UPC</option>
+
+                </select>
+          </div>
+
+          <div>
+            <label className="block text-gray-700">Batch Id Concept</label>
+               <select id="preselectedDropdown" name="options" className="border rounded w-full py-2 px-3">
+                  <option value="option1" selected>Disable</option>
+                  <option value="option2" >Enable</option>
+                </select>
+          </div>
+
+          <div>
+            <label className="block text-gray-700">Product Expiry</label>
+               <select id="preselectedDropdown" name="options" className="border rounded w-full py-2 px-3">
+                  <option value="option1" selected>Disable</option>
+                  <option value="option2" >Enable</option>
+                </select>
+          </div>
+          <div>
+            <label className="block text-gray-700">Product Unit</label>
             <input
               type="text"
-              name="client_name"
+              name="Product_Unit"
               className="border rounded w-full py-2 px-3"
-              value={formData.client_name}
+              value="Product Unit"
               onChange={handleChange}
             />
           </div>
 
           <div>
-            <label className="block text-gray-700">Contact Number</label>
+            <label className="block text-gray-700">Product Cost(In INR)</label>
+            <input
+              type="number"
+              name="product_cost"
+              className="border rounded w-full py-2 px-3"
+              value="0.00"
+              onChange={handleChange}
+            />
+          </div>
+
+          <div>
+            <label className="block text-gray-700">Retail price(In INR)</label>
+            <input
+              type="number"
+              name="retail_price"
+              className="border rounded w-full py-2 px-3"
+              value="0.00"
+              onChange={handleChange}
+            />
+          </div>
+          <div>
+            <label className="block text-gray-700">Product Tax</label>
+               <select id="preselectedDropdown" name="options" className="border rounded w-full py-2 px-3">
+                  <option value="option1" selected>No Tax</option>
+                  <option value="option2" >GST</option>
+                  <option value="option3" >Sales Tax</option>
+                  <option value="option4" >VAT</option>
+                  <option value="option5" >Local Tax</option>
+                  <option value="option6" >Import Dupy</option>
+
+
+                </select>
+          </div>
+
+          <div>
+            <label className="block text-gray-700">Tax Method</label>
+               <select id="preselectedDropdown" name="options" className="border rounded w-full py-2 px-3">
+                  <option value="option1" selected>Inclusive</option>
+                  <option value="option2" >Exclusive</option>
+                  <option value="option3" >Calculated Tax</option>
+                  <option value="option4" >Flat Rate Tax</option>
+                  <option value="option5" >Variable Tax</option>
+                  <option value="option6" >Compound Tax</option>
+                  <option value="option6" >Overriding Tax </option>
+                  
+
+
+                </select>
+          </div>
+
+          <div>
+            <label className="block text-gray-700">supplier</label>
+               <select id="preselectedDropdown" name="options" className="border rounded w-full py-2 px-3">
+                  <option value="option1" selected>Select Supplier</option>
+                  <option value="option2" >Component Suppliers</option>
+                  <option value="option3" >Service Providers</option>
+                  <option value="option4" >Wholesale Suppliers</option>
+                  <option value="option5" >Retail Suppliers</option>
+                  <option value="option6" >Secondary Suppliers</option>
+                  <option value="option6" >Global Suppliers </option>
+                  <option value="option6" >Local Suppliers </option>
+
+                  
+
+
+                </select>
+          </div>
+
+
+          <div>
+            <label className="block text-gray-700">Supplier Price</label>
             <input
               type="text"
-              name="contact_number"
+              name="supplier_price"
               className="border rounded w-full py-2 px-3"
-              value={formData.contact_number}
+              value="Supplier Price"
               onChange={handleChange}
             />
           </div>
 
-          <div>
-            <label className="block text-gray-700">Alternate Contact</label>
-            <input
-              type="text"
-              name="alternate_contact"
-              className="border rounded w-full py-2 px-3"
-              value={formData.alternate_contact}
-              onChange={handleChange}
-            />
-          </div>
-
-          <div>
+          {/* <div>
             <label className="block text-gray-700">Email</label>
             <input
               type="email"
@@ -176,9 +261,9 @@ const AddClient = () => {
               value={formData.email}
               onChange={handleChange}
             />
-          </div>
+          </div> */}
 
-          <div>
+          {/* <div>
             <label className="block text-gray-700">Client Source</label>
             <input
               type="text"
@@ -187,20 +272,11 @@ const AddClient = () => {
               value={formData.client_source}
               onChange={handleChange}
             />
-          </div>
+          </div> */}
 
-          <div>
-            <label className="block text-gray-700">Joining Date</label>
-            <input
-              type="date"
-              name="joining_date"
-              className="border rounded w-full py-2 px-3"
-              value={formData.joining_date}
-              onChange={handleChange}
-            />
-          </div>
+         
 
-          <div>
+          {/* <div>
             <label className="block text-gray-700">Package</label>
             <input
               type="text"
@@ -209,9 +285,9 @@ const AddClient = () => {
               value={formData.package}
               onChange={handleChange}
             />
-          </div>
+          </div> */}
 
-          <div>
+          {/* <div>
             <label className="block text-gray-700">Price</label>
             <input
               type="text"
@@ -220,9 +296,9 @@ const AddClient = () => {
               value={formData.price}
               onChange={handleChange}
             />
-          </div>
+          </div> */}
 
-          <div>
+          {/* <div>
             <label className="block text-gray-700">Discount</label>
             <input
               type="text"
@@ -231,9 +307,9 @@ const AddClient = () => {
               value={formData.discount}
               onChange={handleChange}
             />
-          </div>
+          </div> */}
 
-          <div>
+          {/* <div>
             <label className="block text-gray-700">Admission Charges</label>
             <input
               type="text"
@@ -242,7 +318,7 @@ const AddClient = () => {
               value={formData.admission_charges}
               onChange={handleChange}
             />
-          </div>
+          </div> */}
 
           <div>
             <label className="block text-gray-700">Tax</label>
@@ -255,7 +331,7 @@ const AddClient = () => {
             />
           </div>
 
-          <div>
+          {/* <div>
             <label className="block text-gray-700">Redeem Rewards</label>
             <input
               type="text"
@@ -264,9 +340,9 @@ const AddClient = () => {
               value={formData.redeem_rewards}
               onChange={handleChange}
             />
-          </div>
+          </div> */}
 
-          <div>
+          {/* <div>
             <label className="block text-gray-700">Amount Payable</label>
             <input
               type="text"
@@ -275,9 +351,9 @@ const AddClient = () => {
               value={formData.amount_payable}
               onChange={handleChange}
             />
-          </div>
+          </div> */}
 
-          <div>
+          {/* <div>
             <label className="block text-gray-700">Amount Paid</label>
             <input
               type="text"
@@ -286,9 +362,9 @@ const AddClient = () => {
               value={formData.amount_paid}
               onChange={handleChange}
             />
-          </div>
+          </div> */}
 
-          <div>
+          {/* <div>
             <label className="block text-gray-700">Payment Mode</label>
             <input
               type="text"
@@ -297,8 +373,8 @@ const AddClient = () => {
               value={formData.payment_mode}
               onChange={handleChange}
             />
-          </div>
-
+          </div> */}
+{/* 
           <div>
             <label className="block text-gray-700">Balance</label>
             <input
@@ -308,42 +384,14 @@ const AddClient = () => {
               value={formData.balance}
               onChange={handleChange}
             />
-          </div>
+          </div> */}
 
-          <div>
-            <label className="block text-gray-700">Client Representative</label>
-            <input
-              type="text"
-              name="client_representative"
-              className="border rounded w-full py-2 px-3"
-              value={formData.client_representative}
-              onChange={handleChange}
-            />
-          </div>
 
-          <div>
-            <label className="block text-gray-700">Appoint Trainer</label>
-            <input
-              type="text"
-              name="appoint_trainer"
-              className="border rounded w-full py-2 px-3"
-              value={formData.appoint_trainer}
-              onChange={handleChange}
-            />
-          </div>
+         
 
-          <div>
-            <label className="block text-gray-700">Gender</label>
-            <input
-              type="text"
-              name="gender"
-              className="border rounded w-full py-2 px-3"
-              value={formData.gender}
-              onChange={handleChange}
-            />
-          </div>
+          
 
-          <div>
+          {/* <div>
             <label className="block text-gray-700">Birthday</label>
             <input
               type="date"
@@ -352,9 +400,9 @@ const AddClient = () => {
               value={formData.birthday}
               onChange={handleChange}
             />
-          </div>
+          </div> */}
 
-          <div>
+          {/* <div>
             <label className="block text-gray-700">Anniversary</label>
             <input
               type="date"
@@ -363,9 +411,9 @@ const AddClient = () => {
               value={formData.anniversary}
               onChange={handleChange}
             />
-          </div>
+          </div> */}
 
-          <div>
+          {/* <div>
             <label className="block text-gray-700">Profession</label>
             <input
               type="text"
@@ -374,7 +422,7 @@ const AddClient = () => {
               value={formData.profession}
               onChange={handleChange}
             />
-          </div>
+          </div> */}
 
           <div>
             <label className="block text-gray-700">Tax ID</label>
@@ -387,7 +435,7 @@ const AddClient = () => {
             />
           </div>
 
-          <div>
+          {/* <div>
             <label className="block text-gray-700">Workout Start</label>
             <input
               type="time"
@@ -396,9 +444,9 @@ const AddClient = () => {
               value={formData.workout_start}
               onChange={handleChange}
             />
-          </div>
+          </div> */}
 
-          <div>
+          {/* <div>
             <label className="block text-gray-700">Workout End</label>
             <input
               type="time"
@@ -407,9 +455,9 @@ const AddClient = () => {
               value={formData.workout_end}
               onChange={handleChange}
             />
-          </div>
+          </div> */}
 
-          <div>
+          {/* <div>
             <label className="block text-gray-700">Address</label>
             <textarea
               name="address"
@@ -417,9 +465,9 @@ const AddClient = () => {
               value={formData.address}
               onChange={handleChange}
             />
-          </div>
+          </div> */}
 
-          <div>
+          {/* <div>
             <label className="block text-gray-700">Remarks</label>
             <textarea
               name="remarks"
@@ -427,10 +475,10 @@ const AddClient = () => {
               value={formData.remarks}
               onChange={handleChange}
             />
-          </div>
+          </div> */}
 
           <div className="col-span-2">
-            <label className="block text-gray-700">Profile Picture</label>
+            <label className="block text-gray-700">Product Picture</label>
             <div className="w-32 h-32 border-2 border-gray-300 flex justify-center items-center relative">
               {image ? (
                 <img
@@ -462,7 +510,7 @@ const AddClient = () => {
               type="submit"
               className="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-700"
             >
-              Save Client
+              Save Product
             </button>
           </div>
         </form>
