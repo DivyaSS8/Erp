@@ -2,6 +2,8 @@ import React, { useEffect, useState, useRef } from 'react';
 import { FaEllipsisV } from 'react-icons/fa';
 import { createPortal } from 'react-dom';
 import { useNavigate } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEnvelope,faAngleDown } from '@fortawesome/free-solid-svg-icons';
 
 const OrdersPage = () => {
   const [orders, setOrders] = useState([]);
@@ -55,9 +57,10 @@ const OrdersPage = () => {
 
         <div className="flex space-x-4">
           <div className='cursor-pointer w-36 text-center mt-5' onClick={() => setDropDown(!dropDown)}>
-            <h1 className='bg-pink-500 rounded-xl text-center font-bold flex items-center justify-between mx-1 p-1 px-2 text-lg text-white'>
+            <h1 className='bg-pink-500 rounded-xl text-center font-bold flex items-center justify-between mx-1 p-2 px-2 text-lg text-white'>
               Options
-              <img className="w-10 h-10 text-center" src='https://cdn2.iconfinder.com/data/icons/font-awesome/1792/angle-down-512.png' alt='down arrow'/>
+     <FontAwesomeIcon className="text-3xl font-bold text-white" icon={faAngleDown}/>
+              {/* <img className="w-10 h-10 text-center" src='https://cdn2.iconfinder.com/data/icons/font-awesome/1792/angle-down-512.png' alt='down arrow'/> */}
             </h1>
           </div>
           

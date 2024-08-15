@@ -1,6 +1,8 @@
 import React, { useRef, useState } from 'react';
 import { FaEllipsisV } from 'react-icons/fa';
 import { createPortal } from 'react-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEnvelope,faAngleDown } from '@fortawesome/free-solid-svg-icons';
 const StockManagementPage = () => {
   // State to manage the stock items
   const [openDropdown, setOpenDropdown] = useState(null);
@@ -71,7 +73,6 @@ const StockManagementPage = () => {
      
 
 
-
       <div className="p-4 bg-blue-50 min-h-screen">
       <div className='w-12/12 m-auto flex justify-between'>
         <div>
@@ -80,8 +81,9 @@ const StockManagementPage = () => {
         </div>
 
         <div className='cursor-pointer w-36 text-center mt-5' onClick={() => setDropDown(!dropDown)}>
-          <h1 className='bg-pink-500 rounded-xl text-center font-bold flex items-center justify-between mx-1 p-1 px-2 text-lg text-white'>Options
-            <img className="w-10 h-10 text-center" src='https://cdn2.iconfinder.com/data/icons/font-awesome/1792/angle-down-512.png' alt='down arrow'/>
+          <h1 className='bg-pink-500 rounded-xl text-center font-bold flex items-center justify-between mx-1 p-2 px-2 text-lg text-white'>Options
+     <FontAwesomeIcon className="text-3xl font-bold text-white" icon={faAngleDown}/>
+            {/* <img className="w-10 h-10 text-center" src='https://cdn2.iconfinder.com/data/icons/font-awesome/1792/angle-down-512.png' alt='down arrow'/> */}
           </h1>
         </div>
       </div>

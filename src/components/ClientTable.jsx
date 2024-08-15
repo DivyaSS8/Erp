@@ -2,6 +2,8 @@ import React, { useEffect, useState, useRef } from 'react';
 import { FaEllipsisV } from 'react-icons/fa';
 import { createPortal } from 'react-dom';
 import { useNavigate } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEnvelope,faAngleDown } from '@fortawesome/free-solid-svg-icons';
 
 const ClientTable = () => {
   const [clients, setClients] = useState([]);
@@ -69,7 +71,8 @@ const ClientTable = () => {
           <h1 onClick={()=> (dropDown === false) ? setDropDown(true) : setDropDown(false)} 
           className='bg-pink-500 rounded-xl text-center h-12 font-bold flex items-center justify-between m-2 p-2 text-lg text-white'>
             Options
-         <img className="w-10 text-center " src='https://cdn2.iconfinder.com/data/icons/font-awesome/1792/angle-down-512.png' alt='down arror'/>
+     <FontAwesomeIcon className="px-1 text-3xl font-bold text-white" icon={faAngleDown}/>
+         {/* <img className="w-10 text-center " src='https://cdn2.iconfinder.com/data/icons/font-awesome/1792/angle-down-512.png' alt='down arror'/> */}
 
           </h1>
         
