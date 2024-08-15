@@ -8,7 +8,7 @@ import FollowUpPage from './components/Pages/FollowUpPage';
 import AnalyticsPage from './components/Pages/AnalyticsPage';
 import Orders from './components/Pages/OrdersPage';
 import InventoryTrackingPage from './components/Pages/InventoryTrackingPage';
-
+import StockManagementPage from "./components/Pages/Stocks";
 // Components
 import AddClient from './components/AddClient';
 import ClientTable from './components/ClientTable';
@@ -26,6 +26,9 @@ const App = () => {
           <Route path="/analytics" element={<AnalyticsPage />} />
           <Route path="/orders" element={<Orders />} />
           <Route path="/inventory-tracking" element={<InventoryTrackingPage />} />
+          <Route path="/stocks" element={<StockManagementPage />} />
+
+
         </Routes>
       </Layout>
     </Router>
