@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { FaEllipsisV } from 'react-icons/fa';
 import { createPortal } from 'react-dom';
+import { useNavigate } from 'react-router-dom';
 
 const OrdersPage = () => {
   const [orders, setOrders] = useState([]);
@@ -33,29 +34,38 @@ const OrdersPage = () => {
   };
 
   const handleStatusChange = (index, status) => {
-    // Handle status change logic here
     console.log(`Order at index ${index} changed status to ${status}`);
     setOpenDropdown(null);
   };
 
   const handleDelete = (index) => {
-    // Handle delete logic here
     console.log(`Order at index ${index} deleted`);
     setOpenDropdown(null);
   };
+
+  const navigate = useNavigate();
 
   return (
     <div className="p-4 bg-blue-50 min-h-screen">
       <div className='w-12/12 m-auto flex justify-between'>
         <div>
-          <input className="w-80 p-2 my-5 mr-2 border-2 rounded-md focus:border-green-500 outline-none border-gray-300" type='text' placeholder='search the product..'/>
-          <button className='text-white font-bold p-2 my-2 text-lg bg-pink-500 rounded-xl'>search</button>
+          <input className="w-80 p-2 my-5 mr-2 border-2 rounded-md focus:border-green-500 outline-none border-gray-300" type='text' placeholder='Search the product..'/>
+          <button className='text-white font-bold p-2 my-2 text-lg bg-pink-500 rounded-xl'>Search</button>
         </div>
 
-        <div className='cursor-pointer w-36 text-center mt-5' onClick={() => setDropDown(!dropDown)}>
-          <h1 className='bg-pink-500 rounded-xl text-center font-bold flex items-center justify-between mx-1 p-1 px-2 text-lg text-white'>Options
-            <img className="w-10 h-10 text-center" src='https://cdn2.iconfinder.com/data/icons/font-awesome/1792/angle-down-512.png' alt='down arrow'/>
-          </h1>
+        <div className="flex space-x-4">
+          <div className='cursor-pointer w-36 text-center mt-5' onClick={() => setDropDown(!dropDown)}>
+            <h1 className='bg-pink-500 rounded-xl text-center font-bold flex items-center justify-between mx-1 p-1 px-2 text-lg text-white'>
+              Options
+              <img className="w-10 h-10 text-center" src='https://cdn2.iconfinder.com/data/icons/font-awesome/1792/angle-down-512.png' alt='down arrow'/>
+            </h1>
+          </div>
+          
+          <button
+            onClick={() => navigate('/add-orders')}
+           className='text-white font-bold p-2 text-lg bg-pink-500 rounded-xl m-4'>
+            Add Order
+          </button>
         </div>
       </div>
 
@@ -76,7 +86,6 @@ const OrdersPage = () => {
             <input type="checkbox" className="form-checkbox h-5 w-5 text-green-500" />
             <select className="border rounded px-3 py-2">
               <option>Show 10</option>
-              {/* Add more options here */}
             </select>
             <select className="border rounded px-3 py-2">
               <option>--Select Status--</option>
@@ -85,11 +94,9 @@ const OrdersPage = () => {
             </select>
             <select className="border rounded px-3 py-2">
               <option>--All Categories--</option>
-              {/* Add more options here */}
             </select>
             <select className="border rounded px-3 py-2">
               <option>--All Payment Methods--</option>
-              {/* Add more options here */}
             </select>
           </div>
           <input 
@@ -122,7 +129,6 @@ const OrdersPage = () => {
                     <td className="px-4 py-2 text-center">{order.status}</td>
                     <td className="px-4 py-2 text-center">{order.total_amount}</td>
                     <td className="px-4 py-2 text-center">
-                      {/* Action Button */}
                       <button
                         ref={(el) => (dropdownButtonRefs.current[index] = el)}
                         onClick={() => handleDropdownToggle(index)}

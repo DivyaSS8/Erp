@@ -66,13 +66,13 @@ const MainContent = () => {
           title="Create Order" 
           color="bg-gradient-to-r from-purple-500 to-blue-500" 
           icon={<FaShoppingCart className="text-white" />} 
-          navigateTo="/create-order"
+          navigateTo="/add-orders"
         />
         <ButtonCard 
           title="Manage Suppliers" 
           color="bg-gradient-to-r from-green-500 to-teal-500" 
           icon={<FaTruckLoading className="text-white" />} 
-          navigateTo="/manage-suppliers"
+          navigateTo="/suppliers"
         />
         <ButtonCard 
           title="Generate Invoice" 

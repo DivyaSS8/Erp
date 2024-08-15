@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { FaEllipsisV } from 'react-icons/fa';
 import { createPortal } from 'react-dom';
+import { useNavigate } from 'react-router-dom';
 
 const SuppliersPage = () => {
   const [suppliers, setSuppliers] = useState([]);
@@ -43,6 +44,7 @@ const SuppliersPage = () => {
     console.log(`Supplier at index ${index} deleted`);
     setOpenDropdown(null);
   };
+  const navigate = useNavigate();
 
   return (
     <div className="p-4 bg-blue-50 min-h-screen">
@@ -52,10 +54,19 @@ const SuppliersPage = () => {
           <button className='text-white font-bold p-2 my-2 text-lg bg-pink-500 rounded-xl'>Search</button>
         </div>
 
-        <div className='cursor-pointer w-36 text-center mt-5' onClick={() => setDropDown(!dropDown)}>
-          <h1 className='bg-pink-500 rounded-xl text-center font-bold flex items-center justify-between mx-1 p-1 px-2 text-lg text-white'>Options
-            <img className="w-10 h-10 text-center" src='https://cdn2.iconfinder.com/data/icons/font-awesome/1792/angle-down-512.png' alt='down arrow' />
-          </h1>
+        <div className="flex items-center space-x-4">
+          <div className='cursor-pointer w-36 text-center mt-5' onClick={() => setDropDown(!dropDown)}>
+            <h1 className='bg-pink-500 rounded-xl text-center font-bold flex items-center justify-between mx-1 p-1 px-2 text-lg text-white'>Options
+              <img className="w-10 h-10 text-center" src='https://cdn2.iconfinder.com/data/icons/font-awesome/1792/angle-down-512.png' alt='down arrow' />
+            </h1>
+          </div>
+
+          <button
+            onClick={() => navigate('/add-suppliers')}
+            className="text-white font-bold p-2 text-lg bg-pink-500 rounded-xl mt-5"
+          >
+            Add Suppliers
+          </button>
         </div>
       </div>
 
