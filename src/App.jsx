@@ -10,12 +10,11 @@ import Orders from './components/Pages/OrdersPage';
 import PurchaseOrders from './components/Pages/PurchaseOrders';
 import SuppliersPage from './components/Pages/SuppliersTable';
 import InventoryTrackingPage from './components/Pages/InventoryTrackingPage';
-<<<<<<< HEAD
+
 import StockManagementPage from "./components/Pages/Stocks";
-=======
+
 import PromotionsPage from './components/Pages/PromotionsPage';
 
->>>>>>> 9420788a839af4ebfdf875a6df4605cbbbe709b5
 // Components
 import AddClient from './components/AddClient';
 import ClientTable from './components/ClientTable';
@@ -40,14 +39,13 @@ const App = () => {
           <Route path="/suppliers" element={<SuppliersPage />} />
           <Route path="/add-suppliers" element={<AddSupplier />} />
           <Route path="/inventory-tracking" element={<InventoryTrackingPage />} />
-<<<<<<< HEAD
+
           <Route path="/stocks" element={<StockManagementPage />} />
 
 
-=======
+
           <Route path="/promotions" element={<PromotionsPage />} />
           <Route path="/add-promotions" element={<AddPromotion />} />
->>>>>>> 9420788a839af4ebfdf875a6df4605cbbbe709b5
         </Routes>
       </Layout>
     </Router>
