@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { FaTachometerAlt, FaBoxOpen, FaTruck, FaClipboardList, FaIndustry, FaFileInvoice, FaWarehouse, FaChartBar, FaUsersCog, FaCogs } from 'react-icons/fa';
+import { FaTachometerAlt, FaBoxOpen, FaTruck, FaClipboardList, FaIndustry, FaFileInvoice, FaWarehouse, FaChartBar, FaBullhorn, FaCogs, FaUsersCog } from 'react-icons/fa';
 
 const Sidebar = () => {
   const navigate = useNavigate();
@@ -74,7 +74,7 @@ const Sidebar = () => {
           className={`flex items-center space-x-2 hover:bg-gray-200 p-2 rounded-md cursor-pointer ${activeTab === 'promotions' ? 'bg-gradient-to-r from-pink-500 to-purple-500 text-white' : ''}`}
           onClick={() => handleNavigation('/promotions', 'promotions')}
         >
-          <FaUsersCog className="text-gray-700" />
+          <FaBullhorn className="text-gray-700" /> {/* Changed icon here */}
           <span>Promotions</span>
         </li>
         <li
