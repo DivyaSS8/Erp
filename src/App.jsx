@@ -10,10 +10,12 @@ import Orders from './components/Pages/OrdersPage';
 import PurchaseOrders from './components/Pages/PurchaseOrders';
 import SuppliersPage from './components/Pages/SuppliersTable';
 import InventoryTrackingPage from './components/Pages/InventoryTrackingPage';
+import PromotionsPage from './components/Pages/PromotionsPage';
 
 // Components
 import AddClient from './components/AddClient';
 import ClientTable from './components/ClientTable';
+import AddPromotion from './components/AddPromotions';
 
 const App = () => {
 
@@ -30,6 +32,8 @@ const App = () => {
           <Route path="/purchase-orders" element={<PurchaseOrders />} />
           <Route path="/suppliers" element={<SuppliersPage />} />
           <Route path="/inventory-tracking" element={<InventoryTrackingPage />} />
+          <Route path="/promotions" element={<PromotionsPage />} />
+          <Route path="/add-promotions" element={<AddPromotion />} />
         </Routes>
       </Layout>
     </Router>

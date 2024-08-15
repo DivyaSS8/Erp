@@ -71,6 +71,13 @@ const Sidebar = () => {
           <span>Reports & Analytics</span>
         </li>
         <li
+          className={`flex items-center space-x-2 hover:bg-gray-200 p-2 rounded-md cursor-pointer ${activeTab === 'promotions' ? 'bg-gradient-to-r from-pink-500 to-purple-500 text-white' : ''}`}
+          onClick={() => handleNavigation('/promotions', 'promotions')}
+        >
+          <FaUsersCog className="text-gray-700" />
+          <span>Promotions</span>
+        </li>
+        <li
           className={`flex items-center space-x-2 hover:bg-gray-200 p-2 rounded-md cursor-pointer ${activeTab === 'user-management' ? 'bg-gradient-to-r from-pink-500 to-purple-500 text-white' : ''}`}
           onClick={() => handleNavigation('/user-management', 'user-management')}
         >
