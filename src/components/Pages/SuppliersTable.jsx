@@ -3,30 +3,30 @@ import { FaEllipsisV } from 'react-icons/fa';
 import { createPortal } from 'react-dom';
 import { useNavigate } from 'react-router-dom';
 
-const OrdersPage = () => {
-  const [orders, setOrders] = useState([]);
+const SuppliersPage = () => {
+  const [suppliers, setSuppliers] = useState([]);
   const [openDropdown, setOpenDropdown] = useState(null);
   const dropdownButtonRefs = useRef([]);
   const dropdownRef = useRef(null);
   const [dropDown, setDropDown]  = useState(false);
 
-  // Fetch all orders when the component mounts
+  // Fetch all suppliers when the component mounts
   useEffect(() => {
-    const fetchOrders = async () => {
+    const fetchSuppliers = async () => {
       try {
-        const response = await fetch('http://localhost:5000/orders');
+        const response = await fetch('http://localhost:5000/suppliers');
         if (response.ok) {
           const data = await response.json();
-          setOrders(data);
+          setSuppliers(data);
         } else {
-          console.error('Failed to fetch orders.');
+          console.error('Failed to fetch suppliers.');
         }
       } catch (error) {
         console.error('Error:', error);
       }
     };
 
-    fetchOrders();
+    fetchSuppliers();
   }, []);
 
   const handleDropdownToggle = (index) => {
@@ -34,51 +34,52 @@ const OrdersPage = () => {
   };
 
   const handleStatusChange = (index, status) => {
-    console.log(`Order at index ${index} changed status to ${status}`);
+    // Handle status change logic here
+    console.log(`Supplier at index ${index} changed status to ${status}`);
     setOpenDropdown(null);
   };
 
   const handleDelete = (index) => {
-    console.log(`Order at index ${index} deleted`);
+    // Handle delete logic here
+    console.log(`Supplier at index ${index} deleted`);
     setOpenDropdown(null);
   };
-
   const navigate = useNavigate();
 
   return (
     <div className="p-4 bg-blue-50 min-h-screen">
       <div className='w-12/12 m-auto flex justify-between'>
         <div>
-          <input className="w-80 p-2 my-5 mr-2 border-2 rounded-md focus:border-green-500 outline-none border-gray-300" type='text' placeholder='Search the product..'/>
+          <input className="w-80 p-2 my-5 mr-2 border-2 rounded-md focus:border-green-500 outline-none border-gray-300" type='text' placeholder='Search supplier...' />
           <button className='text-white font-bold p-2 my-2 text-lg bg-pink-500 rounded-xl'>Search</button>
         </div>
 
-        <div className="flex space-x-4">
+        <div className="flex items-center space-x-4">
           <div className='cursor-pointer w-36 text-center mt-5' onClick={() => setDropDown(!dropDown)}>
-            <h1 className='bg-pink-500 rounded-xl text-center font-bold flex items-center justify-between mx-1 p-1 px-2 text-lg text-white'>
-              Options
-              <img className="w-10 h-10 text-center" src='https://cdn2.iconfinder.com/data/icons/font-awesome/1792/angle-down-512.png' alt='down arrow'/>
+            <h1 className='bg-pink-500 rounded-xl text-center font-bold flex items-center justify-between mx-1 p-1 px-2 text-lg text-white'>Options
+              <img className="w-10 h-10 text-center" src='https://cdn2.iconfinder.com/data/icons/font-awesome/1792/angle-down-512.png' alt='down arrow' />
             </h1>
           </div>
-          
+
           <button
-            onClick={() => navigate('/add-orders')}
-           className='text-white font-bold p-2 text-lg bg-pink-500 rounded-xl m-4'>
-            Add Order
+            onClick={() => navigate('/add-suppliers')}
+            className="text-white font-bold p-2 text-lg bg-pink-500 rounded-xl mt-5"
+          >
+            Add Suppliers
           </button>
         </div>
       </div>
 
       {dropDown && (
         <div className='bg-gray-200 rounded p-3 mr-10 absolute right-10 top-[14rem]'>
-          <p className='p-1 border-b-2 border-gray-400'>All Orders</p>
-          <p className='p-1 border-b-2 border-gray-400'>Pending Orders</p>
-          <p className='p-1 border-b-2 border-gray-400'>Completed Orders</p>
+          <p className='p-1 border-b-2 border-gray-400'>All Suppliers</p>
+          <p className='p-1 border-b-2 border-gray-400'>Active Suppliers</p>
+          <p className='p-1 border-b-2 border-gray-400'>Inactive Suppliers</p>
         </div>
       )}
 
       <div className="bg-green-500 text-white p-4 rounded-t-lg">
-        <h2 className="text-xl font-semibold">Order List</h2>
+        <h2 className="text-xl font-semibold">Supplier List</h2>
       </div>
       <div className="bg-white p-4 rounded-b-lg shadow-lg">
         <div className="flex justify-between items-center mb-4">
@@ -86,17 +87,16 @@ const OrdersPage = () => {
             <input type="checkbox" className="form-checkbox h-5 w-5 text-green-500" />
             <select className="border rounded px-3 py-2">
               <option>Show 10</option>
+              {/* Add more options here */}
             </select>
             <select className="border rounded px-3 py-2">
               <option>--Select Status--</option>
-              <option>Pending</option>
-              <option>Completed</option>
+              <option>Active</option>
+              <option>Inactive</option>
             </select>
             <select className="border rounded px-3 py-2">
               <option>--All Categories--</option>
-            </select>
-            <select className="border rounded px-3 py-2">
-              <option>--All Payment Methods--</option>
+              {/* Add more options here */}
             </select>
           </div>
           <input 
@@ -110,25 +110,24 @@ const OrdersPage = () => {
             <thead>
               <tr className="bg-green-500 text-white">
                 <th className="px-4 py-2 text-left">#</th>
-                <th className="px-4 py-2 text-left">Order ID</th>
-                <th className="px-4 py-2 text-left">Customer Name</th>
-                <th className="px-4 py-2 text-left">Order Date</th>
+                <th className="px-4 py-2 text-left">Supplier ID</th>
+                <th className="px-4 py-2 text-left">Supplier Name</th>
+                <th className="px-4 py-2 text-left">Contact</th>
                 <th className="px-4 py-2 text-left">Status</th>
-                <th className="px-4 py-2 text-left">Total Amount</th>
                 <th className="px-4 py-2 text-left">Action</th>
               </tr>
             </thead>
             <tbody>
-              {orders.length > 0 ? (
-                orders.map((order, index) => (
-                  <tr key={order.order_id}>
+              {suppliers.length > 0 ? (
+                suppliers.map((supplier, index) => (
+                  <tr key={supplier.supplier_id}>
                     <td className="px-4 py-2 text-center">{index + 1}</td>
-                    <td className="px-4 py-2 text-center">{order.order_id}</td>
-                    <td className="px-4 py-2 text-center">{order.customer_name}</td>
-                    <td className="px-4 py-2 text-center">{order.order_date}</td>
-                    <td className="px-4 py-2 text-center">{order.status}</td>
-                    <td className="px-4 py-2 text-center">{order.total_amount}</td>
+                    <td className="px-4 py-2 text-center">{supplier.supplier_id}</td>
+                    <td className="px-4 py-2 text-center">{supplier.supplier_name}</td>
+                    <td className="px-4 py-2 text-center">{supplier.contact}</td>
+                    <td className="px-4 py-2 text-center">{supplier.status}</td>
                     <td className="px-4 py-2 text-center">
+                      {/* Action Button */}
                       <button
                         ref={(el) => (dropdownButtonRefs.current[index] = el)}
                         onClick={() => handleDropdownToggle(index)}
@@ -146,16 +145,16 @@ const OrdersPage = () => {
                           }}
                         >
                           <a
-                            onClick={() => handleStatusChange(index, 'Pending')}
+                            onClick={() => handleStatusChange(index, 'Active')}
                             className="block px-4 py-2 text-gray-700 hover:bg-gray-100 cursor-pointer"
                           >
-                            Mark as Pending
+                            Mark as Active
                           </a>
                           <a
-                            onClick={() => handleStatusChange(index, 'Completed')}
+                            onClick={() => handleStatusChange(index, 'Inactive')}
                             className="block px-4 py-2 text-gray-700 hover:bg-gray-100 cursor-pointer"
                           >
-                            Mark as Completed
+                            Mark as Inactive
                           </a>
                           <a
                             onClick={() => handleDelete(index)}
@@ -171,8 +170,8 @@ const OrdersPage = () => {
                 ))
               ) : (
                 <tr className="text-center">
-                  <td className="px-4 py-2" colSpan="7">
-                    No orders found
+                  <td className="px-4 py-2" colSpan="6">
+                    No suppliers found
                   </td>
                 </tr>
               )}
@@ -184,4 +183,4 @@ const OrdersPage = () => {
   );
 };
 
-export default OrdersPage;
+export default SuppliersPage;
