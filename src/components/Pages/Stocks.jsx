@@ -1,87 +1,103 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { FaEllipsisV } from 'react-icons/fa';
 import { createPortal } from 'react-dom';
-import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope,faAngleDown } from '@fortawesome/free-solid-svg-icons';
-
-const OrdersPage = () => {
-  const [orders, setOrders] = useState([]);
+const StockManagementPage = () => {
+  // State to manage the stock items
   const [openDropdown, setOpenDropdown] = useState(null);
   const dropdownButtonRefs = useRef([]);
   const dropdownRef = useRef(null);
   const [dropDown, setDropDown]  = useState(false);
+  const [stockItems, setStockItems] = useState([]);
 
-  // Fetch all orders when the component mounts
-  useEffect(() => {
-    const fetchOrders = async () => {
-      try {
-        const response = await fetch('http://localhost:5000/orders');
-        if (response.ok) {
-          const data = await response.json();
-          setOrders(data);
-        } else {
-          console.error('Failed to fetch orders.');
-        }
-      } catch (error) {
-        console.error('Error:', error);
-      }
-    };
+  const [newItem, setNewItem] = useState({
+    name: '',
+    category: '',
+    quantity: '',
+    price: '',
+    supplier: '',
+    dateOfEntry: '',
+  });
 
-    fetchOrders();
-  }, []);
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setNewItem({
+      ...newItem,
+      [name]: value,
+    });
+  };
 
+  const handleAddItem = () => {
+    if (newItem.name && newItem.quantity && newItem.price && newItem.category && newItem.supplier && newItem.dateOfEntry) {
+      const newItemData = {
+        id: stockItems.length + 1,
+        ...newItem,
+        quantity: parseInt(newItem.quantity, 10),
+        price: parseFloat(newItem.price),
+      };
+      setStockItems([...stockItems, newItemData]);
+      setNewItem({
+        name: '',
+        category: '',
+        quantity: '',
+        price: '',
+        supplier: '',
+        dateOfEntry: '',
+      });
+    }
+  };
   const handleDropdownToggle = (index) => {
     setOpenDropdown(openDropdown === index ? null : index);
   };
 
+
+  const handleDeleteItem = (id) => {
+    setStockItems(stockItems.filter(item => item.id !== id));
+  };
+
   const handleStatusChange = (index, status) => {
+    // Handle status change logic here
     console.log(`Order at index ${index} changed status to ${status}`);
     setOpenDropdown(null);
   };
 
   const handleDelete = (index) => {
+    // Handle delete logic here
     console.log(`Order at index ${index} deleted`);
     setOpenDropdown(null);
   };
 
-  const navigate = useNavigate();
-
   return (
-    <div className="p-4 bg-blue-50 min-h-screen">
+    <div className="container mx-auto ">
+     
+
+
+      <div className="p-4 bg-blue-50 min-h-screen">
       <div className='w-12/12 m-auto flex justify-between'>
         <div>
-          <input className="w-80 p-2 my-5 mr-2 border-2 rounded-md focus:border-green-500 outline-none border-gray-300" type='text' placeholder='Search the product..'/>
-          <button className='text-white font-bold p-2 my-2 text-lg bg-pink-500 rounded-xl'>Search</button>
+          <input className="w-80 p-2 my-5 mr-2 border-2 rounded-md focus:border-green-500 outline-none border-gray-300" type='text' placeholder='search the product..'/>
+          <button className='text-white font-bold p-2 my-2 text-lg bg-pink-500 rounded-xl'>search</button>
         </div>
 
-        <div className="flex space-x-4">
-          <div className='cursor-pointer w-36 text-center mt-5' onClick={() => setDropDown(!dropDown)}>
-            <h1 className='bg-pink-500 rounded-xl text-center font-bold flex items-center justify-between mx-1 p-2 px-2 text-lg text-white'>
-              Options
+        <div className='cursor-pointer w-36 text-center mt-5' onClick={() => setDropDown(!dropDown)}>
+          <h1 className='bg-pink-500 rounded-xl text-center font-bold flex items-center justify-between mx-1 p-2 px-2 text-lg text-white'>Options
      <FontAwesomeIcon className="text-3xl font-bold text-white" icon={faAngleDown}/>
-              {/* <img className="w-10 h-10 text-center" src='https://cdn2.iconfinder.com/data/icons/font-awesome/1792/angle-down-512.png' alt='down arrow'/> */}
-            </h1>
-          </div>
-          
-          <button
-            onClick={() => navigate('/add-orders')}
-           className='text-white font-bold p-2 text-lg bg-pink-500 rounded-xl m-4'>
-            Add Order
-          </button>
+            {/* <img className="w-10 h-10 text-center" src='https://cdn2.iconfinder.com/data/icons/font-awesome/1792/angle-down-512.png' alt='down arrow'/> */}
+          </h1>
         </div>
       </div>
 
       {dropDown && (
-        <div className='bg-gray-200 rounded p-3 mr-10 absolute right-10 top-[14rem]'>
-          <p className='p-1 border-b-2 border-gray-400'>All Orders</p>
-          <p className='p-1 border-b-2 border-gray-400'>Pending Orders</p>
-          <p className='p-1 border-b-2 border-gray-400'>Completed Orders</p>
+        <div className='cursor-pointer bg-gray-200 rounded p-3 mr-10 absolute right-10 top-[14rem]'>
+          <p className='p-1 border-b-2 border-gray-400'>In Stock</p>
+          <p className='p-1 border-b-2 border-gray-400'>Low Stock Orders</p>
+          <p className='p-1 border-b-2 border-gray-400'>Out Of Stock</p>
         </div>
       )}
 
       <div className="bg-green-500 text-white p-4 rounded-t-lg">
-        <h2 className="text-xl font-semibold">Order List</h2>
+        <h2 className="text-xl font-semibold">Items List</h2>
       </div>
       <div className="bg-white p-4 rounded-b-lg shadow-lg">
         <div className="flex justify-between items-center mb-4">
@@ -89,6 +105,7 @@ const OrdersPage = () => {
             <input type="checkbox" className="form-checkbox h-5 w-5 text-green-500" />
             <select className="border rounded px-3 py-2">
               <option>Show 10</option>
+              {/* Add more options here */}
             </select>
             <select className="border rounded px-3 py-2">
               <option>--Select Status--</option>
@@ -97,9 +114,11 @@ const OrdersPage = () => {
             </select>
             <select className="border rounded px-3 py-2">
               <option>--All Categories--</option>
+              {/* Add more options here */}
             </select>
             <select className="border rounded px-3 py-2">
               <option>--All Payment Methods--</option>
+              {/* Add more options here */}
             </select>
           </div>
           <input 
@@ -113,17 +132,19 @@ const OrdersPage = () => {
             <thead>
               <tr className="bg-green-500 text-white">
                 <th className="px-4 py-2 text-left">#</th>
-                <th className="px-4 py-2 text-left">Order ID</th>
-                <th className="px-4 py-2 text-left">Customer Name</th>
-                <th className="px-4 py-2 text-left">Order Date</th>
-                <th className="px-4 py-2 text-left">Status</th>
-                <th className="px-4 py-2 text-left">Total Amount</th>
-                <th className="px-4 py-2 text-left">Action</th>
+                <th className="px-4 py-2 text-left">Product Name</th>
+                <th className="px-4 py-2 text-left">Category</th>
+                <th className="px-4 py-2 text-left">Quantity</th>
+                <th className="px-4 py-2 text-left">Price</th>
+                <th className="px-4 py-2 text-left">Supplier</th>
+                <th className="px-4 py-2 text-left">Date Of Entry</th>
+                <th className="px-4 py-2 text-left">Actions</th>
+
               </tr>
             </thead>
             <tbody>
-              {orders.length > 0 ? (
-                orders.map((order, index) => (
+              {stockItems.length > 0 ? (
+                stockItems.map((order, index) => (
                   <tr key={order.order_id}>
                     <td className="px-4 py-2 text-center">{index + 1}</td>
                     <td className="px-4 py-2 text-center">{order.order_id}</td>
@@ -132,6 +153,7 @@ const OrdersPage = () => {
                     <td className="px-4 py-2 text-center">{order.status}</td>
                     <td className="px-4 py-2 text-center">{order.total_amount}</td>
                     <td className="px-4 py-2 text-center">
+                      {/* Action Button */}
                       <button
                         ref={(el) => (dropdownButtonRefs.current[index] = el)}
                         onClick={() => handleDropdownToggle(index)}
@@ -175,7 +197,7 @@ const OrdersPage = () => {
               ) : (
                 <tr className="text-center">
                   <td className="px-4 py-2" colSpan="7">
-                    No orders found
+                    No Items found
                   </td>
                 </tr>
               )}
@@ -184,7 +206,12 @@ const OrdersPage = () => {
         </div>
       </div>
     </div>
+
+
+              
+     
+    </div>
   );
 };
 
-export default OrdersPage;
+export default StockManagementPage;

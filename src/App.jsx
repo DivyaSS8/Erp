@@ -10,6 +10,9 @@ import Orders from './components/Pages/OrdersPage';
 import PurchaseOrders from './components/Pages/PurchaseOrders';
 import SuppliersPage from './components/Pages/SuppliersTable';
 import InventoryTrackingPage from './components/Pages/InventoryTrackingPage';
+
+import StockManagementPage from "./components/Pages/Stocks";
+
 import PromotionsPage from './components/Pages/PromotionsPage';
 
 // Components
@@ -36,6 +39,11 @@ const App = () => {
           <Route path="/suppliers" element={<SuppliersPage />} />
           <Route path="/add-suppliers" element={<AddSupplier />} />
           <Route path="/inventory-tracking" element={<InventoryTrackingPage />} />
+
+          <Route path="/stocks" element={<StockManagementPage />} />
+
+
+
           <Route path="/promotions" element={<PromotionsPage />} />
           <Route path="/add-promotions" element={<AddPromotion />} />
         </Routes>

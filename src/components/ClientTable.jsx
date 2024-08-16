@@ -2,6 +2,8 @@ import React, { useEffect, useState, useRef } from 'react';
 import { FaEllipsisV } from 'react-icons/fa';
 import { createPortal } from 'react-dom';
 import { useNavigate } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEnvelope,faAngleDown } from '@fortawesome/free-solid-svg-icons';
 
 const ProductTable = () => {
   const [products, setProducts] = useState([]);
@@ -73,7 +75,13 @@ const ProductTable = () => {
           <h1 onClick={() => setDropDown(!dropDown)}
             className='bg-pink-500 rounded-xl text-center h-12 font-bold flex items-center justify-between m-2 p-2 text-lg text-white'>
             Options
+<<<<<<< HEAD
             <img className="w-10 text-center" src='https://cdn2.iconfinder.com/data/icons/font-awesome/1792/angle-down-512.png' alt='down arrow' />
+=======
+     <FontAwesomeIcon className="px-1 text-3xl font-bold text-white" icon={faAngleDown}/>
+         {/* <img className="w-10 text-center " src='https://cdn2.iconfinder.com/data/icons/font-awesome/1792/angle-down-512.png' alt='down arror'/> */}
+
+>>>>>>> 2ce964f1587afaa321c112c0eb916edbcf1953d9
           </h1>
         </div>
       </div>
